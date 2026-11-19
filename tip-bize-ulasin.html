@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="tr" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="İzmir Bakırçay Üniversitesi Tıp Fakültesi iletişim formu.">
+    <meta name="theme-color" content="#1a5276">
+
+    <title>Bize Ulaşın | İzmir Bakırçay Üniversitesi Tıp Fakültesi</title>
+
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,
+    <svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✉</text></svg>">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-dark: #00a5b5;
+            --primary: #0c8793;
+            --primary-light: #57dce8;
+            --primary-lighter: #8eeff8;
+            --accent: #02747e;
+            --gray-50: #f8f9fa;
+            --gray-100: #f1f3f5;
+            --gray-200: #e9ecef;
+            --gray-300: #dee2e6;
+            --gray-400: #ced4da;
+            --gray-500: #adb5bd;
+            --gray-600: #6c757d;
+            --gray-700: #495057;
+            --gray-800: #343a40;
+            --gray-900: #212529;
+            --success: #27ae60;
+            --danger: #e74c3c;
+            --warning: #f39c12;
+            --info: #3498db;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+            --shadow-md: 0 4px 16px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 40px rgba(0,0,0,0.12);
+            --shadow-xl: 0 20px 60px rgba(0,0,0,0.15);
+            --shadow-focus: 0 0 0 4px rgba(41,128,185,0.2);
+            --transition-normal: 0.3s ease;
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-xl: 20px;
+            --radius-full: 50%;
+            --font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; }
+        html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+        body {
+            font-family: var(--font-family);
+            color: var(--gray-800);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .main-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #e8f4f8 0%, #f0f4f8 25%, #f8f9fb 50%, #eef2f7 75%, #e4ecf4 100%);
+        }
+
+        .bg-decoration {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 0; overflow: hidden;
+        }
+        .bg-circle {
+            position: absolute; border-radius: var(--radius-full); opacity: 0.4; filter: blur(80px);
+        }
+        .bg-circle-1 {
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(41,128,185,0.15), transparent 70%);
+            top: -10%; right: -5%; animation: floatSlow 20s ease-in-out infinite;
+        }
+        .bg-circle-2 {
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(39,174,96,0.1), transparent 70%);
+            bottom: -10%; left: -5%; animation: floatSlow 25s ease-in-out infinite reverse;
+        }
+        .bg-circle-3 {
+            width: 300px; height: 300px;
+            background: radial-gradient(circle, rgba(26,82,118,0.08), transparent 70%);
+            top: 50%; left: 50%; transform: translate(-50%, -50%);
+            animation: floatSlow 30s ease-in-out infinite;
+        }
+        @keyframes floatSlow {
+            0%, 100% { transform: translate(0, 0); }
+            25% { transform: translate(30px, -20px); }
+            50% { transform: translate(-20px, 30px); }
+            75% { transform: translate(20px, 20px); }
+        }
+
+        .form-card {
+            width: 100%; max-width: 850px; background: #ffffff;
+            border-radius: var(--radius-xl); box-shadow: var(--shadow-lg);
+            position: relative; z-index: 1; overflow: hidden;
+            animation: cardEntrance 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+            opacity: 0; transform: translateY(30px);
+        }
+        @keyframes cardEntrance {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .form-card:hover { box-shadow: var(--shadow-xl); transition: box-shadow 0.5s ease; }
+        .form-card::after {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+            background: linear-gradient(90deg, var(--primary-dark), var(--primary-light), var(--accent));
+        }
+
+        .card-header-custom {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 50%, var(--primary-light) 100%);
+            padding: 40px 40px 35px; text-align: center; position: relative; overflow: hidden;
+        }
+        .card-header-custom::before {
+            content: ''; position: absolute; bottom: -2px; left: 0; width: 100%; height: 30px;
+            background: #ffffff; clip-path: ellipse(55% 100% at 50% 100%);
+        }
+        .icon-wrapper {
+            width: 80px; height: 80px; margin: 0 auto 20px;
+            background: rgba(255,255,255,0.15); border-radius: var(--radius-full);
+            display: flex; align-items: center; justify-content: center;
+            backdrop-filter: blur(10px); border: 2px solid rgba(255,255,255,0.2);
+            animation: iconPulse 2s ease-in-out infinite;
+        }
+        .icon-wrapper i { font-size: 36px; color: #ffffff; }
+        @keyframes iconPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        .form-title {
+            font-size: 28px; font-weight: 700; color: #ffffff;
+            margin: 0 0 12px; letter-spacing: -0.3px;
+        }
+        .form-subtitle {
+            font-size: 15px; color: rgba(255,255,255,0.85); margin: 0;
+            max-width: 500px; margin-left: auto; margin-right: auto; line-height: 1.6;
+        }
+
+        .card-body-custom { padding: 35px 40px 25px; }
+
+        .form-floating-custom { position: relative; }
+        .form-label-custom {
+            font-size: 14px; font-weight: 600; color: var(--gray-700);
+            margin-bottom: 8px; display: inline-block;
+        }
+        .form-label-custom i { color: var(--primary-light); font-size: 14px; }
+        .required-star { color: var(--danger); font-weight: 700; }
+
+        .form-control-custom {
+            border: 2px solid var(--gray-200); border-radius: var(--radius-sm);
+            padding: 14px 16px; font-size: 15px; color: var(--gray-800);
+            background-color: var(--gray-50); transition: all var(--transition-normal);
+            outline: none; width: 100%;
+        }
+        .form-control-custom::placeholder { color: var(--gray-400); font-size: 14px; }
+        .form-control-custom:focus {
+            border-color: var(--primary-light); background-color: #ffffff;
+            box-shadow: var(--shadow-focus); outline: none;
+        }
+        .form-control-custom.is-valid { border-color: var(--success); background-color: #f0fdf4; }
+        .form-control-custom.is-valid:focus { box-shadow: 0 0 0 4px rgba(39,174,96,0.15); }
+        .form-control-custom.is-invalid { border-color: var(--danger); background-color: #fef2f2; }
+        .form-control-custom.is-invalid:focus { box-shadow: 0 0 0 4px rgba(231,76,60,0.15); }
+
+        .textarea-custom {
+            resize: vertical; min-height: 120px; max-height: 400px;
+            overflow-y: auto; line-height: 1.7;
+        }
+        .text-muted-custom { font-size: 12px; color: var(--gray-500); margin-top: 6px; display: block; }
+        .invalid-feedback-custom {
+            font-size: 13px; color: var(--danger); margin-top: 6px;
+            min-height: 20px; display: flex; align-items: center; gap: 4px;
+        }
+        .invalid-feedback-custom:empty { min-height: 0; margin-top: 0; }
+
+        .char-counter {
+            font-size: 12px; color: var(--gray-500); transition: color 0.15s ease; margin-left: auto;
+        }
+        .char-counter.active { color: var(--primary-light); }
+        .char-counter.warning { color: var(--warning); }
+
+        .btn-submit {
+            width: 100%; padding: 16px 32px; font-size: 17px; font-weight: 600;
+            color: #ffffff;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            border: none; border-radius: var(--radius-md); cursor: pointer;
+            transition: all var(--transition-normal); position: relative; overflow: hidden;
+        }
+        .btn-submit:hover:not(:disabled) {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            transform: translateY(-2px); box-shadow: 0 8px 25px rgba(26,82,118,0.35);
+        }
+        .btn-submit:active:not(:disabled) { transform: translateY(0); box-shadow: var(--shadow-sm); }
+        .btn-submit:focus-visible { outline: 3px solid var(--primary-lighter); outline-offset: 3px; }
+        .btn-submit:disabled { opacity: 0.7; cursor: not-allowed; transform: none; }
+
+        .card-footer-custom {
+            padding: 18px 40px; background-color: var(--gray-50);
+            border-top: 1px solid var(--gray-200); text-align: center;
+        }
+        .card-footer-custom small { font-size: 12px; color: var(--gray-500); }
+        .card-footer-custom .bi-shield-lock-fill { font-size: 14px; }
+
+        .university-footer {
+            margin-top: 30px; text-align: center; color: var(--gray-600);
+            font-size: 14px; z-index: 1; position: relative;
+        }
+        .university-footer strong { color: var(--primary); }
+        .university-footer small {
+            display: block; margin-top: 4px; font-size: 12px; color: var(--gray-500);
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-4px); }
+            20%, 40%, 60%, 80% { transform: translateX(4px); }
+        }
+        .shake { animation: shake 0.5s ease-in-out; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in { animation: fadeIn 0.3s ease forwards; }
+
+        .info-note {
+            background: linear-gradient(135deg, #e8f4f8 0%, #f0f8ff 100%);
+            border: 1px solid #b8d4e3; border-radius: var(--radius-sm);
+            padding: 16px 20px; margin-bottom: 25px;
+            font-size: 13px; color: var(--primary-dark); line-height: 1.6;
+        }
+        .info-note i { color: var(--info); margin-right: 6px; }
+        .info-note strong { color: var(--primary); }
+
+        /* Setup alanı - Admin görünümü */
+        .setup-panel {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+            border: 2px solid #f0c040; border-radius: var(--radius-sm);
+            padding: 20px 24px; margin-bottom: 25px;
+        }
+        .setup-panel h5 { color: #856404; margin-bottom: 12px; font-size: 15px; }
+        .setup-panel .step { margin-bottom: 8px; font-size: 13px; color: #5a4a00; }
+        .setup-panel .step strong { color: #856404; }
+        .setup-panel a { color: #0d6efd; font-weight: 600; }
+        .setup-panel .badge-status {
+            display: inline-block; padding: 4px 10px; border-radius: 20px;
+            font-size: 11px; font-weight: 600;
+        }
+        .badge-ok { background: #d4edda; color: #155724; }
+        .badge-warn { background: #fff3cd; color: #856404; }
+
+        @media (max-width: 768px) {
+            .main-container { padding: 20px 15px; }
+            .card-header-custom { padding: 30px 25px 25px; }
+            .card-body-custom { padding: 25px 20px 20px; }
+            .form-title { font-size: 24px; }
+            .form-subtitle { font-size: 14px; }
+            .icon-wrapper { width: 65px; height: 65px; }
+            .icon-wrapper i { font-size: 30px; }
+            .form-control-custom { padding: 12px 14px; font-size: 16px; }
+            .btn-submit { padding: 14px 24px; font-size: 16px; }
+            .card-footer-custom { padding: 15px 20px; }
+        }
+        @media (max-width: 576px) {
+            .main-container { padding: 15px 10px; }
+            .card-header-custom { padding: 25px 20px 20px; }
+            .card-body-custom { padding: 20px 16px 15px; }
+            .form-title { font-size: 22px; }
+            .form-subtitle { font-size: 13px; }
+            .icon-wrapper { width: 56px; height: 56px; margin-bottom: 15px; }
+            .icon-wrapper i { font-size: 26px; }
+            .university-footer { font-size: 12px; margin-top: 20px; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            .form-card { opacity: 1; transform: none; }
+        }
+        @media (prefers-contrast: high) {
+            .form-control-custom { border-width: 3px; border-color: var(--gray-800); }
+            .form-label-custom { font-weight: 700; }
+        }
+        .textarea-custom::-webkit-scrollbar { width: 8px; }
+        .textarea-custom::-webkit-scrollbar-track { background: var(--gray-100); border-radius: 4px; }
+        .textarea-custom::-webkit-scrollbar-thumb { background: var(--gray-300); border-radius: 4px; }
+        .textarea-custom::-webkit-scrollbar-thumb:hover { background: var(--gray-400); }
+    </style>
+</head>
+<body>
+
+    <main class="main-container" role="main">
+
+        <div class="bg-decoration" aria-hidden="true">
+            <div class="bg-circle bg-circle-1"></div>
+            <div class="bg-circle bg-circle-2"></div>
+            <div class="bg-circle bg-circle-3"></div>
+        </div>
+
+        <div class="form-card" id="formCard" role="region" aria-labelledby="formTitle">
+
+            <div class="card-header-custom">
+                <img class="tiplogo" style="width: 40%;" src="https://tip.bakircay.edu.tr/upload/sayfa/10/tiplogo_beyaz.png" alt="İzmir Bakırçay Üniversitesi Tıp Fakültesi"><br>
+                <div class="icon-wrapper">
+                    <i class="bi bi-envelope-paper-fill" aria-hidden="true"></i>
+                </div>
+                <h1 id="formTitle" class="form-title visually-hidden">Bize Ulaşın</h1>
+                <p class="form-subtitle">
+                    Aşağıdaki form aracılığıyla Tıp Fakültemize görüş, öneri, talep ve düşüncelerinizi
+                    güvenli şekilde iletebilirsiniz.
+                </p>
+            </div>
+
+            <div class="card-body-custom">
+
+                <!-- =========================================================
+                     FORM
+                     ========================================================= -->
+                <form id="messageForm" action="https://api.web3forms.com/submit" method="post"
+                      accept-charset="UTF-8" aria-label="Tıp Fakültesi İletişim Formu">
+
+                    <!-- tip@bakircay.edu.tr için oluşturulan Web3Forms erişim anahtarını girin. -->
+                    <input type="hidden" name="access_key" value="2dd3b9ec-245e-48ec-bffd-a88b435cd4ba">
+                    <input type="hidden" name="subject" value="Tıp Fakültesi | Bize Ulaşın Formu">
+                    <input type="hidden" name="from_name" value="İzmir Bakırçay Üniversitesi Tıp Fakültesi">
+                    <input type="checkbox" name="botcheck" hidden tabindex="-1" autocomplete="off">
+
+                    <!-- Ad ve Soyad -->
+                    <div class="row g-3 mb-3">
+                        <div class="col-md-6">
+                            <div class="form-floating-custom">
+                                <label for="first_name" class="form-label-custom">
+                                    <i class="bi bi-person-fill me-1" aria-hidden="true"></i>
+                                    Ad <span class="required-star" aria-label="zorunlu alan">*</span>
+                                </label>
+                                <input type="text" class="form-control form-control-custom" id="first_name" name="Ad"
+                                       placeholder="Adınızı giriniz" minlength="2" maxlength="50"
+                                       required autocomplete="given-name" aria-required="true" aria-describedby="first_name_error">
+                                <div class="invalid-feedback-custom" id="first_name_error" role="alert" aria-live="polite"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating-custom">
+                                <label for="last_name" class="form-label-custom">
+                                    <i class="bi bi-person-fill me-1" aria-hidden="true"></i>
+                                    Soyad <span class="required-star" aria-label="zorunlu alan">*</span>
+                                </label>
+                                <input type="text" class="form-control form-control-custom" id="last_name" name="Soyad"
+                                       placeholder="Soyadınızı giriniz" minlength="2" maxlength="50"
+                                       required autocomplete="family-name" aria-required="true" aria-describedby="last_name_error">
+                                <div class="invalid-feedback-custom" id="last_name_error" role="alert" aria-live="polite"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Telefon -->
+                    <div class="mb-3">
+                        <div class="form-floating-custom">
+                            <label for="phone" class="form-label-custom">
+                                <i class="bi bi-telephone-fill me-1" aria-hidden="true"></i>
+                                Telefon Numarası <span class="required-star" aria-label="zorunlu alan">*</span>
+                            </label>
+                            <input type="tel" class="form-control form-control-custom" id="phone" name="Telefon"
+                                   placeholder="05XX XXX XX XX" maxlength="14"
+                                   pattern="0[0-9]{3} ?[0-9]{3} ?[0-9]{2} ?[0-9]{2}"
+                                   required autocomplete="tel" aria-required="true"
+                                   aria-describedby="phone_error phone_hint" inputmode="numeric">
+                            <small id="phone_hint" class="form-text text-muted-custom">
+                                Türkiye telefon formatı: 05XXXXXXXXX
+                            </small>
+                            <div class="invalid-feedback-custom" id="phone_error" role="alert" aria-live="polite"></div>
+                        </div>
+                    </div>
+
+                    <!-- E-posta -->
+                    <div class="mb-3">
+                        <div class="form-floating-custom">
+                            <label for="email" class="form-label-custom">
+                                <i class="bi bi-envelope-fill me-1" aria-hidden="true"></i>
+                                E-posta Adresi <span class="required-star" aria-label="zorunlu alan">*</span>
+                            </label>
+                            <input type="email" class="form-control form-control-custom" id="email" name="email"
+                                   placeholder="ornek@bakircay.edu.tr" maxlength="254"
+                                   required autocomplete="email" aria-required="true" aria-describedby="email_error">
+                            <div class="invalid-feedback-custom" id="email_error" role="alert" aria-live="polite"></div>
+                        </div>
+                    </div>
+
+                    <!-- Mesaj -->
+                    <div class="mb-4">
+                        <div class="form-floating-custom">
+                            <label for="message" class="form-label-custom">
+                                <i class="bi bi-chat-left-text-fill me-1" aria-hidden="true"></i>
+                                Mesaj <span class="required-star" aria-label="zorunlu alan">*</span>
+                            </label>
+                            <textarea class="form-control form-control-custom textarea-custom" id="message" name="Mesaj"
+                                      placeholder="Mesajınızı buraya yazınız..." rows="4"
+                                      minlength="20" required aria-required="true"
+                                      aria-describedby="message_error message_counter"></textarea>
+                            <div class="d-flex justify-content-between align-items-center mt-1">
+                                <div class="invalid-feedback-custom mb-0" id="message_error" role="alert" aria-live="polite"></div>
+                                <small id="message_counter" class="char-counter" aria-live="polite" aria-atomic="true" hidden>
+                                    <span id="charCount">0</span> karakter
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Gönder Butonu -->
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-submit" id="submitBtn" aria-label="Mesajı gönder">
+                            <span class="btn-content" id="btnContent">
+                                <i class="bi bi-send-fill me-2" aria-hidden="true"></i>
+                                Gönder
+                            </span>
+                            <span class="btn-loading d-none" id="btnLoading" aria-hidden="true" hidden>
+                                <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                                Gönderiliyor...
+                            </span>
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+
+            <div class="card-footer-custom" aria-label="Güvenlik bilgisi">
+                <div class="d-flex align-items-center justify-content-center gap-2">
+                    <i class="bi bi-shield-lock-fill text-success" aria-hidden="true"></i>
+                    <small>Bu form güvenli bir bağlantı üzerinden iletilmektedir.</small>
+                </div>
+            </div>
+
+        </div>
+
+        <footer class="university-footer" role="contentinfo">
+            <p class="mb-0">
+                <strong>İzmir Bakırçay Üniversitesi</strong> — Tıp Fakültesi Dekanlığı
+            </p>
+            <small id="footerYear"></small>
+        </footer>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+
+    <script>
+        'use strict';
+
+        const CONFIG = {
+            minNameLength: 2,
+            maxNameLength: 50,
+            minMessageLength: 20,
+            phoneLength: 11,
+            debounceDelay: 300,
+            animationDelay: 500,
+        };
+
+        const PATTERNS = {
+            phone: /^0[0-9]{10}$/,
+            email: /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/,
+            onlyDigits: /[^0-9]/g,
+        };
+
+        const ERROR_MESSAGES = {
+            firstName: { required: 'Ad alanı zorunludur.', minLength: 'Ad en az 2 karakter olmalıdır.', maxLength: 'Ad en fazla 50 karakter olmalıdır.' },
+            lastName:  { required: 'Soyad alanı zorunludur.', minLength: 'Soyad en az 2 karakter olmalıdır.', maxLength: 'Soyad en fazla 50 karakter olmalıdır.' },
+            phone:     { required: 'Telefon numarası zorunludur.', invalid: 'Geçerli bir telefon numarası giriniz. (05XXXXXXXXX)', short: 'Telefon numarası eksik.' },
+            email:     { required: 'E-posta adresi zorunludur.', invalid: 'E-posta adresi geçerli değil.' },
+            message:   { required: 'Mesaj alanı zorunludur.', minLength: 'Mesaj en az 20 karakter olmalıdır.' },
+        };
+
+        // ====================================================================
+        // DOM REFERANSLARI
+        // ====================================================================
+        const DOM = {
+            form: document.getElementById('messageForm'),
+            submitBtn: document.getElementById('submitBtn'),
+            btnContent: document.getElementById('btnContent'),
+            btnLoading: document.getElementById('btnLoading'),
+            firstName: document.getElementById('first_name'),
+            lastName: document.getElementById('last_name'),
+            phone: document.getElementById('phone'),
+            email: document.getElementById('email'),
+            message: document.getElementById('message'),
+            charCount: document.getElementById('charCount'),
+            charCounter: document.getElementById('message_counter'),
+        };
+
+        // ====================================================================
+        // YARDIMCI FONKSİYONLAR
+        // ====================================================================
+
+        function debounce(fn, delay = CONFIG.debounceDelay) {
+            let timer;
+            return function (...args) {
+                clearTimeout(timer);
+                timer = setTimeout(() => fn.apply(this, args), delay);
+            };
+        }
+
+        function showError(inputElement, message) {
+            inputElement.classList.remove('is-valid');
+            inputElement.classList.add('is-invalid');
+            inputElement.classList.add('shake');
+            setTimeout(() => inputElement.classList.remove('shake'), CONFIG.animationDelay);
+            const errorDiv = document.getElementById(inputElement.id + '_error');
+            if (errorDiv) {
+                errorDiv.innerHTML = `<i class="bi bi-exclamation-circle-fill"></i> ${message}`;
+                errorDiv.classList.add('fade-in');
+            }
+            inputElement.setAttribute('aria-invalid', 'true');
+        }
+
+        function showValid(inputElement) {
+            inputElement.classList.remove('is-invalid');
+            inputElement.classList.add('is-valid');
+            const errorDiv = document.getElementById(inputElement.id + '_error');
+            if (errorDiv) errorDiv.innerHTML = '';
+            inputElement.setAttribute('aria-invalid', 'false');
+        }
+
+        function clearValidation(inputElement) {
+            inputElement.classList.remove('is-invalid', 'is-valid');
+            const errorDiv = document.getElementById(inputElement.id + '_error');
+            if (errorDiv) errorDiv.innerHTML = '';
+            inputElement.removeAttribute('aria-invalid');
+        }
+
+        // ====================================================================
+        // DOĞRULAMA
+        // ====================================================================
+
+        function validateFirstName() {
+            const v = DOM.firstName.value.trim();
+            if (!v) { showError(DOM.firstName, ERROR_MESSAGES.firstName.required); return false; }
+            if (v.length < CONFIG.minNameLength) { showError(DOM.firstName, ERROR_MESSAGES.firstName.minLength); return false; }
+            if (v.length > CONFIG.maxNameLength) { showError(DOM.firstName, ERROR_MESSAGES.firstName.maxLength); return false; }
+            showValid(DOM.firstName); return true;
+        }
+
+        function validateLastName() {
+            const v = DOM.lastName.value.trim();
+            if (!v) { showError(DOM.lastName, ERROR_MESSAGES.lastName.required); return false; }
+            if (v.length < CONFIG.minNameLength) { showError(DOM.lastName, ERROR_MESSAGES.lastName.minLength); return false; }
+            if (v.length > CONFIG.maxNameLength) { showError(DOM.lastName, ERROR_MESSAGES.lastName.maxLength); return false; }
+            showValid(DOM.lastName); return true;
+        }
+
+        function validatePhone() {
+            const digits = DOM.phone.value.replace(PATTERNS.onlyDigits, '');
+            if (!digits) { showError(DOM.phone, ERROR_MESSAGES.phone.required); return false; }
+            if (digits.length < CONFIG.phoneLength) { showError(DOM.phone, ERROR_MESSAGES.phone.short); return false; }
+            if (!PATTERNS.phone.test(digits)) { showError(DOM.phone, ERROR_MESSAGES.phone.invalid); return false; }
+            showValid(DOM.phone); return true;
+        }
+
+        function validateEmail() {
+            const v = DOM.email.value.trim();
+            if (!v) { showError(DOM.email, ERROR_MESSAGES.email.required); return false; }
+            if (!PATTERNS.email.test(v)) { showError(DOM.email, ERROR_MESSAGES.email.invalid); return false; }
+            showValid(DOM.email); return true;
+        }
+
+        function validateMessage() {
+            const v = DOM.message.value.trim();
+            if (!v) { showError(DOM.message, ERROR_MESSAGES.message.required); return false; }
+            if (v.length < CONFIG.minMessageLength) { showError(DOM.message, ERROR_MESSAGES.message.minLength); return false; }
+            showValid(DOM.message); return true;
+        }
+
+        function validateForm() {
+            const ok = [validateFirstName(), validateLastName(), validatePhone(), validateEmail(), validateMessage()].every(Boolean);
+            if (!ok) {
+                const first = DOM.form.querySelector('.is-invalid');
+                if (first) { first.focus(); first.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+            }
+            return ok;
+        }
+
+        // ====================================================================
+        // TELEFON BİÇİMLENDİRME
+        // ====================================================================
+
+        function formatPhoneNumber(e) {
+            let d = e.target.value.replace(PATTERNS.onlyDigits, '');
+            if (d.length > 0 && d[0] !== '0') d = '0' + d;
+            d = d.substring(0, CONFIG.phoneLength);
+            let f = '';
+            if (d.length > 0) f += d.substring(0, 4);
+            if (d.length > 4) f += ' ' + d.substring(4, 7);
+            if (d.length > 7) f += ' ' + d.substring(7, 9);
+            if (d.length > 9) f += ' ' + d.substring(9, 11);
+            e.target.value = f;
+        }
+
+        // ====================================================================
+        // TEXTAREA & KARAKTER SAYACI
+        // ====================================================================
+
+        function autoResizeTextarea() {
+            DOM.message.style.height = 'auto';
+            DOM.message.style.height = Math.min(DOM.message.scrollHeight, 400) + 'px';
+        }
+
+        function updateCharCount() {
+            const c = DOM.message.value.length;
+            DOM.charCount.textContent = c;
+            if (c >= CONFIG.minMessageLength) {
+                DOM.charCounter.classList.add('active');
+                DOM.charCounter.classList.remove('warning');
+            } else if (c > 0) {
+                DOM.charCounter.classList.add('warning');
+                DOM.charCounter.classList.remove('active');
+            } else {
+                DOM.charCounter.classList.remove('active', 'warning');
+            }
+        }
+
+        // ====================================================================
+        // BUTON DURUMU
+        // ====================================================================
+
+        function setButtonLoading() {
+            DOM.submitBtn.disabled = true;
+            DOM.btnContent.classList.add('d-none');
+            DOM.btnLoading.hidden = false;
+            DOM.btnLoading.classList.remove('d-none');
+            DOM.btnLoading.setAttribute('aria-hidden', 'false');
+            DOM.btnContent.setAttribute('aria-hidden', 'true');
+        }
+
+        function setButtonNormal() {
+            DOM.submitBtn.disabled = false;
+            DOM.btnContent.classList.remove('d-none');
+            DOM.btnLoading.hidden = true;
+            DOM.btnLoading.classList.add('d-none');
+            DOM.btnLoading.setAttribute('aria-hidden', 'true');
+            DOM.btnContent.setAttribute('aria-hidden', 'false');
+        }
+
+        // ====================================================================
+        // E-POSTA GÖNDERİMİ (Web3Forms API)
+        // ====================================================================
+
+        async function sendEmail(payload) {
+            const response = await fetch(DOM.form.action, {
+                method: DOM.form.method.toUpperCase(),
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                body: JSON.stringify(payload),
+            });
+
+            const result = await response.json();
+            if (!response.ok || !result.success) {
+                throw new Error(result.message || 'Gönderim başarısız oldu.');
+            }
+        }
+
+        // ====================================================================
+        // FORM GÖNDERİMİ
+        // ====================================================================
+
+        async function handleFormSubmit(event) {
+            event.preventDefault();
+            if (DOM.submitBtn.disabled || !validateForm()) return;
+
+            const payload = Object.fromEntries(new FormData(DOM.form));
+            const accessKey = payload.access_key?.trim();
+            if (!accessKey || accessKey === 'TIP_FAKULTESI_WEB3FORMS_ANAHTARI') {
+                showErrorAlert('Form henüz etkinleştirilmedi. Tıp Fakültesine tip@bakircay.edu.tr adresinden ulaşabilirsiniz.');
+                return;
+            }
+
+            payload.access_key = accessKey;
+            payload.Ad = payload.Ad.trim();
+            payload.Soyad = payload.Soyad.trim();
+            payload.Telefon = payload.Telefon.replace(PATTERNS.onlyDigits, '');
+            payload.Mesaj = payload.Mesaj.trim();
+
+            setButtonLoading();
+            try {
+                await sendEmail(payload);
+            } catch (error) {
+                console.error('Gönderim hatası:', error);
+                showErrorAlert('Mesaj gönderilemedi. Lütfen tekrar deneyiniz veya tip@bakircay.edu.tr adresine yazınız.');
+                return;
+            } finally {
+                setButtonNormal();
+            }
+            resetForm();
+            showSuccessAlert();
+        }
+
+        // ====================================================================
+        // SWEETALERT2 BİLDİRİMLERİ
+        // ====================================================================
+
+        function showSuccessAlert() {
+            const message = 'Mesajınız gönderildi.';
+            if (!window.Swal) {
+                window.alert(message);
+                return;
+            }
+            window.Swal.fire({
+                icon: 'success',
+                title: 'Başarılı!',
+                text: message,
+                confirmButtonText: 'Tamam',
+                confirmButtonColor: '#27ae60',
+                timer: 5000,
+                timerProgressBar: true,
+                allowOutsideClick: false,
+                allowEscapeKey: true,
+            });
+        }
+
+        function showErrorAlert(message) {
+            if (!window.Swal) {
+                window.alert(message);
+                return;
+            }
+            window.Swal.fire({
+                icon: 'error',
+                title: 'Hata!',
+                text: message || 'Mesaj gönderilemedi. Lütfen daha sonra tekrar deneyiniz.',
+                confirmButtonText: 'Tamam',
+                confirmButtonColor: '#e74c3c',
+                allowOutsideClick: false,
+                allowEscapeKey: true,
+            });
+        }
+
+        function resetForm() {
+            DOM.form.reset();
+            DOM.form.querySelectorAll('.form-control-custom').forEach(clearValidation);
+            DOM.charCount.textContent = '0';
+            DOM.charCounter.classList.remove('active', 'warning');
+            DOM.message.style.height = 'auto';
+        }
+
+        // ====================================================================
+        // OLAY DİNLEYİCİLERİ
+        // ====================================================================
+
+        DOM.form.addEventListener('submit', handleFormSubmit);
+
+        DOM.firstName.addEventListener('blur', validateFirstName);
+        DOM.firstName.addEventListener('input', debounce(() => {
+            if (DOM.firstName.classList.contains('is-invalid')) validateFirstName();
+        }));
+
+        DOM.lastName.addEventListener('blur', validateLastName);
+        DOM.lastName.addEventListener('input', debounce(() => {
+            if (DOM.lastName.classList.contains('is-invalid')) validateLastName();
+        }));
+
+        DOM.phone.addEventListener('input', formatPhoneNumber);
+        DOM.phone.addEventListener('blur', validatePhone);
+        DOM.phone.addEventListener('input', debounce(() => {
+            if (DOM.phone.classList.contains('is-invalid')) validatePhone();
+        }));
+
+        DOM.email.addEventListener('blur', validateEmail);
+        DOM.email.addEventListener('input', debounce(() => {
+            if (DOM.email.classList.contains('is-invalid')) validateEmail();
+        }));
+
+        DOM.message.addEventListener('input', () => { autoResizeTextarea(); updateCharCount(); });
+        DOM.message.addEventListener('blur', validateMessage);
+        DOM.message.addEventListener('input', debounce(() => {
+            if (DOM.message.classList.contains('is-invalid')) validateMessage();
+        }));
+
+        // Enter tuşu ile sonraki alana geç
+        DOM.form.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && e.target.tagName !== 'TEXTAREA' && e.target.tagName !== 'BUTTON') {
+                e.preventDefault();
+                const inputs = Array.from(DOM.form.querySelectorAll('input:not([type="hidden"]):not([hidden]), textarea'));
+                const idx = inputs.indexOf(e.target);
+                if (idx < inputs.length - 1) inputs[idx + 1].focus();
+            }
+        });
+
+        // Footer yılı
+        document.getElementById('footerYear').textContent = `© ${new Date().getFullYear()} Tüm hakları saklıdır.`;
+
+        // İlk inputa odaklan
+        setTimeout(() => DOM.firstName.focus(), 700);
+
+        // Textarea başlangıç yüksekliği ve karakter sayacı
+        DOM.charCounter.hidden = false;
+        updateCharCount();
+        autoResizeTextarea();
+    </script>
+
+</body>
+</html>
